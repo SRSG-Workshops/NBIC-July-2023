@@ -51,21 +51,21 @@ helper:
 
 # Details about the lessons
 lessons:
-  - title: Best Practices in Data Organisation Using Spreadsheets
-    gh-name: spreadsheets
-    type: episode
-    branch: main
-    date: 6 March 2023
-    start-time: 09:30
-    order: 1
+#   - title: Best Practices in Data Organisation Using Spreadsheets
+#     gh-name: spreadsheets
+#     type: episode
+#     branch: main
+#     date: 6 March 2023
+#     start-time: 09:30
+#     order: 1
 
-  - title: Data Cleaning with OpenRefine
-    gh-name: openrefine-data-cleaning
-    type: episode
-    branch: main
-    date: 7 March 2023
-    start-time: 09:30
-    order: 2
+#   - title: Data Cleaning with OpenRefine
+#     gh-name: openrefine-data-cleaning
+#     type: episode
+#     branch: main
+#     date: 7 March 2023
+#     start-time: 09:30
+#     order: 2
 
   - title: Automating Tasks with the Unix Shell  # Lesson title
     org-name: Southampton-RSG-Training           # Name of the GitHub organisation (or individual) the lesson is in defaults to Southampton-RSG-Training
@@ -84,13 +84,13 @@ lessons:
     start-time: 09:30
     order: 4
     
-  - title: Managing Academic Software Development
-    gh-name: project-novice
-    type: episode
-    branch: main
-    date: 15 March 2023
-    start-time: 09:30
-    order: 5
+#   - title: Managing Academic Software Development
+#     gh-name: project-novice
+#     type: episode
+#     branch: main
+#     date: 15 March 2023
+#     start-time: 09:30
+#     order: 5
 
   - title: Building Programs with Python
     gh-name: python-novice
