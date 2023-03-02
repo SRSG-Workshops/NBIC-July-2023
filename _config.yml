@@ -27,10 +27,10 @@ latitude: "50.909698"    # latitude of location (Soton: 50.909698)
 longitude: "-1.404351"   # longitude of location (Soton: -1.404351)
 
 # Specify the start and end date of the workshop
-humandate: "6th March - 29th March 2023"      # e.g. "6th August"
+humandate: "3rd July - 12th July 2023"      # e.g. "6th August"
 humantime: "09:30-13:00"      # e.g. "09:00-17:00"
-startdate: 2023-03-06        # e.g. YYYY-MM-DD # This is required for the surveys NOTE: 1990-1-1 will not work
-enddate: 2023-03-29         # e.g. YYYY-MM-DD
+startdate: 2023-07-03        # e.g. YYYY-MM-DD # This is required for the surveys NOTE: 1990-1-1 will not work
+enddate: 2023-07-12         # e.g. YYYY-MM-DD
 
 # Specify the details of the instructors and helpers
 # Can be list, or single string
@@ -72,7 +72,7 @@ lessons:
     gh-name: shell-novice                        # Name of the GitHub repository for the lesson at https://github:com/{org-name}:
     type: episode                                # Currently only 'episode' or 'episode_r' is valid
     branch: main                                 # Set the branch of the repository to use, useful for lesson customization
-    date: 13 March 2023                          # The date of the lesson                   # date and start-time are required for z
+    date: 3 July 2023                         # The date of the lesson                   # date and start-time are required for z
     start-time: 09:30                            # The start time of the lesson             # 'kind: workshop'
     order: 3                                     # The position of the lesson in the course # order is required for 'delivery: static'
 
@@ -80,7 +80,7 @@ lessons:
     gh-name: git-novice
     type: episode
     branch: main
-    date: 14 March 2023
+    date: 4 July 2023
     start-time: 09:30
     order: 4
     
@@ -97,8 +97,8 @@ lessons:
     type: episode
     branch: main
     date:
-      - 20 March 2023
-      - 21 March 2023
+      - 5 July 2023
+      - 6 July 2023
     start-time:
       - 09:30
       - 09:30
@@ -109,9 +109,9 @@ lessons:
     type: episode
     branch: main
     date:
-      - 27 March 2023
-      - 28 March 2023
-      - 29 March 2023
+      - 10 July 2023
+      - 11 July 2023
+      - 12 July 2023
     start-time:
       - 09:30
       - 09:30
