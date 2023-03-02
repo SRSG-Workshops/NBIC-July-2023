@@ -4,7 +4,7 @@
 # What kind of thing is this ("workshop")? #Don't Change
 kind: "workshop"
 # Is this a permanent page 'static' or a taught workshop 'dated'
-delivery: "static"
+delivery: "dated"
 
 # Overall title for the Workshop.
 # This variable is used to (optionally) add a title in the "jumbotron"
@@ -29,8 +29,8 @@ longitude: "-1.404351"   # longitude of location (Soton: -1.404351)
 # Specify the start and end date of the workshop
 humandate: "TBC"      # e.g. "6th August"
 humantime: "TBC"      # e.g. "09:00-17:00"
-startdate: "1990-01-01"        # e.g. YYYY-MM-DD # This is required for the surveys NOTE: 1990-1-1 will not work
-enddate: "TBC"          # e.g. YYYY-MM-DD
+startdate: "2023-07-03"        # e.g. YYYY-MM-DD # This is required for the surveys NOTE: 1990-1-1 will not work
+enddate: "2023-07-12"          # e.g. YYYY-MM-DD
 
 # Specify the details of the instructors and helpers
 # Can be list, or single string
@@ -55,7 +55,7 @@ lessons:
     gh-name: spreadsheets
     type: episode
     branch: main
-    date: 13 January 2022
+    date: 3 July 2023
     start-time: 15:00
     order: 1
 
@@ -63,7 +63,7 @@ lessons:
     gh-name: openrefine-data-cleaning
     type: episode
     branch: main
-    date: 14 January 2022
+    date: 4 July 2023
     start-time: 15:00
     order: 2
 
@@ -71,7 +71,7 @@ lessons:
     gh-name: project-novice
     type: episode
     branch: main
-    date: 10 January 2022
+    date: 5 July 2023
     start-time: 9:30 am
     order: 3
 
@@ -80,7 +80,7 @@ lessons:
     gh-name: shell-novice                        # Name of the GitHub repository for the lesson at https://github:com/{org-name}:
     type: episode                                # Currently only 'episode' is valid
     branch: main                                 # Set the branch of the repository to use, useful for lesson customization
-    date: 8 January 2022                         # The date of the lesson                   # date and start-time are required for z
+    date: 6 July 2023                        # The date of the lesson                   # date and start-time are required for z
     start-time: 10:30 am                         # The start time of the lesson             # 'kind: workshop'
     order: 4                                     # The position of the lesson in the course # order is required for 'delivery: static'
 
@@ -88,7 +88,7 @@ lessons:
     gh-name: git-novice
     type: episode
     branch: main
-    date: 9 January 2022
+    date: 7 July 2023
     start-time: 8:30 am
     order: 5
 
@@ -97,8 +97,8 @@ lessons:
     type: episode
     branch: main
     date:
-      - 11 January 2022
-      - 12 January 2022
+      - 10 July 2023
+      - 11 July 2023
     start-time:
       - 10:00 am
       - 10:00 am
