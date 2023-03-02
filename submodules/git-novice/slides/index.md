@@ -9,9 +9,6 @@
 
 - Create an account at [github.com](https://www.github.com)
 - Open up a terminal
-- Download the materials
-- `git clone https://github.com/Southampton-RSG-Training/git-novice`
-
 
 
 ## 1. What is Version Control?
@@ -72,42 +69,61 @@
 
 <table>
   <tr>
-    <th>SourceTree</th>
+    <th>Sourcetree</th>
     <th>Git Kraken</th>
     <th>Git Desktop</th>
   </tr>
   <tr>
     <td>![Sourcetree](./images/01-background/sourcetree.png)</td>
-    <td>![Kraken](./images/01-background/kraken.png)</td>
-    <td>![Desktop](./images/01-background/desktop.png)</td>
+    <td>![Git Kraken](./images/01-background/kraken.png)</td>
+    <td>![Git Desktop](./images/01-background/desktop.png)</td>
+  </tr>
+</table>
+
+### GUIs
+
+<table>
+  <tr>
+    <th>PyCharm</th>
+    <th>RStudio</th>
+    <th>VS Code</th>
+  </tr>
+  <tr>
+    <td>![PyCharm](./images/01-background/integration-pycharm.png)</td>
+    <td>![RStudio](./images/01-background/integration-rstudio.png)</td>
+    <td>![VS Code](./images/01-background/integration-vscode.png)</td>
   </tr>
 </table>
 
 
-
 ## 2. Setting Up Git
-
-
-### Getting Demo Files
-
-- `git clone https://github.com/Southampton-RSG-Training/git-novice`
-
 
 ### Key Commands
 
 - `git config`
 
 
+### Setting Up GitHub
+
+- Sign up to GitHub: [https://github.com/signup](https://github.com/signup)
+- Open a terminal
+- `ssh-keygen -t ed25519`
+- `cat ~/.ssh/id_ed25519.pub`
+- Copy the contents to GitHub: [https://github.com/settings/ssh/new](https://github.com/settings/ssh/new)
 
 ## 3. Creating a Repository
 
 
-### Key Commands
+### GitHub Template
 
-- `git init`
-- `git status`
+- Go to [https://github.com/Southampton-RSG-Training/git-novice-template](https://github.com/Southampton-RSG-Training/git-novice-template)
+- "Use This Template"
+- Name it `climate-analysis`
 
 
+### Downloading a Repository
+
+- `git clone git@github.com:yourname/climate-analysis`
 
 ## 4. Tracking Changes
 
@@ -120,7 +136,11 @@
 
 ### Adding & Committing
 
+<center>
+<div style="width: 60%">
 ![Repository structure](./images/04-changes/add.svg)
+</div>
+</center>
 
 
 ### History
@@ -131,8 +151,11 @@
 
 ### Differences
 
+<center>
+<div style="width: 60%">
 ![Types of differencing](./images/04-changes/diff.svg)
-
+</div>
+</center>
 
 
 ## 5. Exploring History
@@ -150,38 +173,60 @@
 
 ### Restoring Files
 
+<center>
+<div style="width: 70%">
 ![Restore files to specific commits](./images/05-history/restore.svg)
+</div>
+</center>
 
 
-## 6. Collaborating
+## 6. Remote Repositories
 
 
 
 ### Local Repo
 
 <center>
-
-<div style="width:60%;">![Local repository workflows](./images/06-collab/local.png)</div>
-
+<div style="width:50%;">![Local repository workflows](./images/06-remote/local.png)</div>
 </center>
 
 
+### Remote Backups
+
+<center>
+
+<div style="width: 65%">![Mountbatten Fire](./images/06-remote/mountbatten-fire.jpg)</div>
+
+</center>
+
 ### Collaboration
 
-![Collaboration via remote repository](./images/06-collab/remote.svg)
+![Collaboration via remote repository](./images/06-remote/remote.svg)
 
 
 ### Remote Repositories
 
-- Sign in to [github.com](https://www.github.com)
-- Create repository
-- `git remote add`
 - `git push`
+- `git pull`
 
 
-### Branches
+### Remote Commands
 
-![Branching off a master branch](./images/06-collab/git-feature-branch.svg)
+<center>
+<div style="width: 60%">![Remote workflows](./images/06-remote/remote.png)</div>
+</center>
+
+
+## 7. Branches
+
+
+### Feature-branch
+
+<center>
+<div style="width: 80%">
+![Branching off a master branch](./images/06-remote/git-feature-branch.svg)
+</div>
+</center>
 
 
 ### Creating branches
@@ -197,80 +242,11 @@
 - `git commit -m`
 
 
-### Branches
+### Pushing & merging
 
-![Remote workflows](./images/06-collab/remote.png)
-
-
-### Branches
-
-![Feature-branch workflow](./images/06-collab/git-feature-branch.svg)
-
-
-### Exercises
-
-- Create a new branch called `doc` coming off `dev`
-- Add a `README.md` file
-- Commit your change to `doc`, then push
-- Create a pull request on GitHub
-- Merge `doc` into `dev`, and pull `dev` back
-
-
-
-## 7. Conflicts
-
-
-### Changes
-
-![One set of changes](./images/07-conflict/conflict_a.svg)
-
-
-### Conflicting changes
-
-![Two conflicting changes](./images/07-conflict/conflict_b.svg)
-
-
-### Configure GitHub
-
-- Go to your repository
-- Settings -> Branches
-- Switch default branch to 'dev'
-
-
-### Branch 1
-
-- `git checkout dev`
-- `git checkout -b feature_cm`
-- Add a line to the end of `rainfall_conversion.py` and commit
-- `git push -u origin feature_cm`
-
-
-### Branch 2
-
-- `git checkout dev`
-- `git checkout -b feature_m`
-- Add a line to the end of `rainfall_conversion.py` and commit
-- `git push -u origin feature_m`
-
-
-### Pull requests
-
-- Create a pull request from `feature_cm` to `dev`
-- Create a pull request from `feature_m` to `dev`
-
-
-### Conflict
-
-- `git pull origin dev`
-- Fix the conflict
-- Commit and push
-- Okay your pull request
-
-
-### Remote workflows
-
-![Two conflicting changes](./images/07-conflict/remote.png)
-
+- `git push origin dev`
+- `git switch main`
+- `git merge dev`
 
 
 ## 8. Ignoring Things
