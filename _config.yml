@@ -45,10 +45,6 @@ helper:
   - "Helper 2"
 # ======================================================================================================================
 
-# See https://github.com/Southampton-RSG-Training/setup-documents for setup instructions.
-setup_docs:
-  - remote_desktop.md
-
 # Details about the lessons
 lessons:
   - title: Best Practices in Data Organisation Using Spreadsheets
