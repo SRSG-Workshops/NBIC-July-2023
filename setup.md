@@ -1,5 +1,5 @@
 ---
-title: Setup for Introductory Research Software Development
+title: Setup for Computational Research Skills
 ---
 
 

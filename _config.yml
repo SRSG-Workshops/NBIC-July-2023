@@ -9,8 +9,8 @@ delivery: "dated"
 # Overall title for the Workshop.
 # This variable is used to (optionally) add a title in the "jumbotron"
 # (the grey box at the top of the page), and to the extra pages.
-title: "Introductory Research Software Development"
-form_title: "Introductory+Research+Software+Development" # This is required for the surveys
+title: "Computational Research Skills"
+form_title: "Computational+Research+Skills" # This is required for the surveys
 
 # Email address, no mailto:
 email: "rsginfo@soton.ac.uk"
@@ -38,13 +38,11 @@ instructor:
   - "Philippa Broadbent"
   - "Sam Mangham"
   - "Ed Parkinson"
-  - "Max Albert"
   - "Steve Crouch"
 instructor-email:
   - "p.k.broadbent@soton.ac.uk"
   - "s.mangham@soton.ac.uk"
   - "e.parkinson@soton.ac.uk"
-  - "m.h.albert@soton.ac.uk"
   - "stc@ecs.soton.ac.uk"
 helper:
   - "Mehtap Özbey Arabaci"
