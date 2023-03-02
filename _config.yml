@@ -45,60 +45,39 @@ helper:
   - "Helper 2"
 # ======================================================================================================================
 
+setup_docs:
+  - remote_desktop.md
+  
 # Details about the lessons
 lessons:
-  - title: Best Practices in Data Organisation Using Spreadsheets
-    gh-name: spreadsheets
-    type: episode
-    branch: main
-    date: 3 July 2023
-    start-time: 15:00
-    order: 1
-
-  - title: Data Cleaning with OpenRefine
-    gh-name: openrefine-data-cleaning
-    type: episode
-    branch: main
-    date: 4 July 2023
-    start-time: 15:00
-    order: 2
-
-  - title: Managing Academic Software Development
-    gh-name: project-novice
-    type: episode
-    branch: main
-    date: 5 July 2023
-    start-time: 9:30 am
-    order: 3
-
   - title: Automating Tasks with the Unix Shell  # Lesson title
     org-name: Southampton-RSG-Training           # Name of the GitHub organisation (or individual) the lesson is in defaults to Southampton-RSG-Training
     gh-name: shell-novice                        # Name of the GitHub repository for the lesson at https://github:com/{org-name}:
     type: episode                                # Currently only 'episode' is valid
     branch: main                                 # Set the branch of the repository to use, useful for lesson customization
-    date: 6 July 2023                        # The date of the lesson                   # date and start-time are required for z
-    start-time: 10:30 am                         # The start time of the lesson             # 'kind: workshop'
-    order: 4                                     # The position of the lesson in the course # order is required for 'delivery: static'
+    date: 3 July 2023                        # The date of the lesson                   # date and start-time are required for z
+    start-time: 09:30 am                         # The start time of the lesson             # 'kind: workshop'
+    order: 1                                     # The position of the lesson in the course # order is required for 'delivery: static'
 
   - title: Version Control with git
     gh-name: git-novice
     type: episode
     branch: main
-    date: 7 July 2023
-    start-time: 8:30 am
-    order: 5
+    date: 4 July 2023
+    start-time: 09:30 am
+    order: 2
 
   - title: Building Programs with Python
     gh-name: python-novice
     type: episode
     branch: main
     date:
-      - 10 July 2023
-      - 11 July 2023
+      - 5 July 2023
+      - 6 July 2023
     start-time:
-      - 10:00 am
-      - 10:00 am
-    order: 6
+      - 09:30 am
+      - 09:30 am
+    order: 3
 
 #  - title: Data Analysis and Visualization in R
 #    gh-name: r-novice
