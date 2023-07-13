@@ -268,11 +268,10 @@ ggplot(data = surveys_complete, mapping = aes(x = weight, y = hindfoot_length)) 
 > 
 > > ## Solution
 > > 
-> > ggplot(data = surveys\_complete,
-> > 
-> > mapping = aes(x = species\_id, y = weight)) +
-> > 
-> > geom\_point(aes(color = plot\_type))
+> > ```r
+> > ggplot(data = surveys_complete, mapping = aes(x = species_id, y = weight)) +
+> >   geom_point(aes(color = plot_type))
+> > ```
 > > 
 > > ![](fig/unnamed-chunk-4-1.png)<!-- --> 
 > {: .solution}
@@ -538,21 +537,17 @@ package provides a wide variety of options.
 > 
 > > ## Solution
 > > 
-> > yearly\_weight \<- surveys\_complete %\>%
+> > ```r
+> > yearly_weight <- surveys_complete %>%
+> >   group_by(year, species_id) %>%
+> >   summarize(avg_weight = mean(weight))
 > > 
-> > group\_by(year, species\_id) %\>%
-> > 
-> > summarize(avg\_weight = mean(weight))
-> > 
-> > ggplot(data = yearly\_weight, mapping = aes(x=year, y=avg\_weight))
-> > +
-> > 
-> > geom\_line() +
-> > 
-> > facet\_wrap(vars(species\_id)) +
-> > 
-> > theme\_bw()
-> > 
+> > ggplot(data = yearly_weight, mapping = aes(x=year, y=avg_weight))+
+> >   geom_line() +
+> >   facet_wrap(vars(species_id)) +
+> >   theme_bw()
+> > ```
+> >
 > > ![](fig/challange-theme-bw-1.png)<!-- --> 
 > {: .solution}
 > 
@@ -719,7 +714,7 @@ my_plot <- ggplot(data = yearly_sex_counts,
           axis.text.y = element_text(colour = "grey20", size = 12),
           text = element_text(size = 16))
 
-ggsave("name_of_file.png", my_plot, width = 15, height = 10)
+ggsave("fig/name_of_file.png", my_plot, width = 15, height = 10)
 
 ## This also works for grid.arrange() plots
 combo_plot <- grid.arrange(spp_weight_boxplot, spp_count_plot, ncol = 2,
@@ -729,7 +724,7 @@ combo_plot <- grid.arrange(spp_weight_boxplot, spp_count_plot, ncol = 2,
 ![](fig/ggsave-example-1.png)<!-- -->
 
 ``` r
-ggsave("combo_plot_abun_weight.png", combo_plot, width = 10, dpi = 300)
+ggsave("fig/combo_plot_abun_weight.png", combo_plot, width = 10, height = 6, dpi = 300)
 ```
 
 Note: The parameters `width` and `height` also determine the font size

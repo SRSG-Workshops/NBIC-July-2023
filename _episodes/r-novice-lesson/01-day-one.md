@@ -22,7 +22,10 @@ objectives:
 - "Describe what a data frame is."
 - "Summarize the contents of a data frame."
 - "Use indexing to subset specific portions of data frames."
-- "Format dates."
+- "Describe what a factor is."
+- "Convert between strings and factors."
+- "Reorder and rename factors."
+- "Change how character strings are handled in a data frame."
 keypoints:
 - "Although R has a steeper learning curve than some other data analysis
 software, R has many advantages - R is interdisciplinary, extensible, great
@@ -418,7 +421,7 @@ Page built on: 📆 2023-01-18 ‒ 🕢 09:26:39
 >   - Describe what a data frame is.
 >   - Summarize the contents of a data frame.
 >   - Use indexing to subset specific portions of data frames.
->   - Format dates.
+>   - Convert, reorder, and reorder factors in data frames.
 {: .callout}
 
 -----
@@ -435,14 +438,18 @@ You can get output from R simply by typing math in the console:
 ``` r
 3 + 5
 ```
-
-    > [1] 8
+~~~
+[1] 8
+~~~
+{: .output}
 
 ``` r
 12 / 7
 ```
-
-    > [1] 1.714286
+~~~
+[1] 1.714286
+~~~
+{: .output}
 
 > ## Stretch Challenge (Intermediate - 15 mins)
 > 
@@ -454,10 +461,9 @@ You can get output from R simply by typing math in the console:
 > 
 > > ## Solution
 > > 
+> > ```r
 > > 8 %% 3
-> > 
-> > > \[1\] 2
-> > 
+> > ```
 > > 
 > {: .solution}
 > 
@@ -466,10 +472,9 @@ You can get output from R simply by typing math in the console:
 > 
 > > ## Solution
 > > 
+> > ```r
 > > 5 ^ 2
-> > 
-> > > \[1\] 25
-> > 
+> > ```
 > > 
 > {: .solution}
 >  
@@ -590,8 +595,10 @@ pounds is 2.2 times the weight in kg):
 ``` r
 2.2 * weight_kg
 ```
-
-    > [1] 121
+~~~
+[1] 121
+~~~
+{: .output}
 
 We can also change an object’s value by assigning it a new one:
 
@@ -599,8 +606,10 @@ We can also change an object’s value by assigning it a new one:
 weight_kg <- 57.5
 2.2 * weight_kg
 ```
-
-    > [1] 126.5
+~~~
+[1] 126.5
+~~~
+{: .output}
 
 This means that assigning a value to one object does not change the
 values of other objects. For example, let’s store the animal’s weight in
@@ -683,8 +692,10 @@ Let’s try a function that can take multiple arguments: `round()`.
 ``` r
 round(3.14159)
 ```
-
-    > [1] 3
+~~~
+[1] 3
+~~~
+{: .output}
 
 Here, we’ve called `round()` with just one argument, `3.14159`, and it
 has returned the value `3`. That’s because the default is to round to
@@ -696,9 +707,11 @@ this function using `?round`.
 ``` r
 args(round)
 ```
-
-    > function (x, digits = 0) 
-    > NULL
+~~~
+function (x, digits = 0) 
+NULL
+~~~
+{: .output}
 
 ``` r
 ?round
@@ -710,8 +723,10 @@ We see that if we want a different number of digits, we can type `digits
 ``` r
 round(3.14159, digits = 2)
 ```
-
-    > [1] 3.14
+~~~
+[1] 3.14
+~~~
+{: .output}
 
 > ## Stretch Challenge (Intermediate - 10 mins)
 > 
@@ -748,8 +763,10 @@ assign it to a new object `weight_g`:
 weight_g <- c(50, 60, 65, 82)
 weight_g
 ```
-
-    > [1] 50 60 65 82
+~~~
+[1] 50 60 65 82
+~~~
+{: .output}
 
 A vector can also contain characters:
 
@@ -757,8 +774,10 @@ A vector can also contain characters:
 animals <- c("mouse", "rat", "dog")
 animals
 ```
-
-    > [1] "mouse" "rat"   "dog"
+~~~
+[1] "mouse" "rat"   "dog"
+~~~
+{: .output}
 
 The quotes around “mouse”, “rat”, etc. are essential here to tell R that
 these are characters and not objects.
@@ -770,14 +789,18 @@ vector:
 ``` r
 length(weight_g)
 ```
-
-    > [1] 4
+~~~
+[1] 4
+~~~
+{: .output}
 
 ``` r
 length(animals)
 ```
-
-    > [1] 3
+~~~
+[1] 3
+~~~
+{: .output}
 
 An important feature of a vector, is that all of the elements are the
 same type of data. The function `class()` indicates what kind of object
@@ -786,14 +809,18 @@ you are working with:
 ``` r
 class(weight_g)
 ```
-
-    > [1] "numeric"
+~~~
+[1] "numeric"
+~~~
+{: .output}
 
 ``` r
 class(animals)
 ```
-
-    > [1] "character"
+~~~
+[1] "character"
+~~~
+{: .output}
 
 The function `str()` provides an overview of the structure of an object
 and its elements. It is a useful function when working with large and
@@ -802,14 +829,18 @@ complex objects:
 ``` r
 str(weight_g)
 ```
-
-    >  num [1:4] 50 60 65 82
+~~~
+num [1:4] 50 60 65 82
+~~~
+{: .output}
 
 ``` r
 str(animals)
 ```
-
-    >  chr [1:3] "mouse" "rat" "dog"
+~~~
+chr [1:3] "mouse" "rat" "dog"
+~~~
+{: .output}
 
 You can use the `c()` function to add other elements to your vector:
 
@@ -818,8 +849,10 @@ weight_g <- c(weight_g, 90) # add to the end of the vector
 weight_g <- c(30, weight_g) # add to the beginning of the vector
 weight_g
 ```
-
-    > [1] 30 50 60 65 82 90
+~~~
+[1] 30 50 60 65 82 90
+~~~
+{: .output}
 
 In the first line, we take the original vector `weight_g`, add the value
 `90` to the end of it, and save the result back into `weight_g`. Then we
@@ -926,9 +959,9 @@ important ones are lists (`list`), matrices (`matrix`), data frames
 > 
 > > ## Solution
 > > 
+> > ```r
 > > rep(1:5, 3)
-> > 
-> > > \[1\] 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5
+> > ```
 > > 
 > > 
 > {: .solution}
@@ -936,10 +969,9 @@ important ones are lists (`list`), matrices (`matrix`), data frames
 > 
 > > ## Solution
 > > 
+> > ```r
 > > seq(3, 30, 3)
-> > 
-> > > \[1\] 3 6 9 12 15 18 21 24 27 30
-> > 
+> > ```
 > > 
 > {: .solution}
 > 
@@ -957,14 +989,18 @@ provide one or several indices in square brackets. For instance:
 animals <- c("mouse", "rat", "dog", "cat")
 animals[2]
 ```
-
-    > [1] "rat"
+~~~
+[1] "rat"
+~~~
+{: .output}
 
 ``` r
 animals[c(3, 2)]
 ```
-
-    > [1] "dog" "rat"
+~~~
+[1] "dog" "rat"
+~~~
+{: .output}
 
 We can also repeat the indices to create an object with more elements
 than the original one:
@@ -973,8 +1009,10 @@ than the original one:
 more_animals <- animals[c(1, 2, 3, 2, 1, 4)]
 more_animals
 ```
-
-    > [1] "mouse" "rat"   "dog"   "rat"   "mouse" "cat"
+~~~
+[1] "mouse" "rat"   "dog"   "rat"   "mouse" "cat"
+~~~
+{: .output}
 
 ### Conditional subsetting
 
@@ -985,8 +1023,10 @@ will select the element with the same index, while `FALSE` will not:
 weight_g <- c(21, 34, 39, 54, 55)
 weight_g[c(TRUE, FALSE, FALSE, TRUE, TRUE)]
 ```
-
-    > [1] 21 54 55
+~~~
+[1] 21 54 55
+~~~
+{: .output}
 
 Typically, these logical vectors are not typed by hand, but are the
 output of other functions or logical tests. For instance, if you wanted
@@ -995,15 +1035,19 @@ to select only the values above 50:
 ``` r
 weight_g > 50    # will return logicals with TRUE for the indices that meet the condition
 ```
-
-    > [1] FALSE FALSE FALSE  TRUE  TRUE
+~~~
+[1] FALSE FALSE FALSE  TRUE  TRUE
+~~~
+{: .output}
 
 ``` r
 ## so we can use this to select only the values above 50
 weight_g[weight_g > 50]
 ```
-
-    > [1] 54 55
+~~~
+[1] 54 55
+~~~
+{: .output}
 
 You can combine multiple tests using `&` (both conditions are true, AND)
 or `|` (at least one of the conditions is true, OR):
@@ -1011,20 +1055,26 @@ or `|` (at least one of the conditions is true, OR):
 ``` r
 weight_g[weight_g > 30 & weight_g < 50]
 ```
-
-    > [1] 34 39
+~~~
+[1] 34 39
+~~~
+{: .output}
 
 ``` r
 weight_g[weight_g <= 30 | weight_g == 55]
 ```
-
-    > [1] 21 55
+~~~
+[1] 21 55
+~~~
+{: .output}
 
 ``` r
 weight_g[weight_g >= 30 & weight_g == 21]
 ```
-
-    > numeric(0)
+~~~
+numeric(0)
+~~~
+{: .output}
 
 Here, `>` for “greater than”, `<` stands for “less than”, `<=` for “less
 than or equal to”, and `==` for “equal to”. The double equal sign `==`
@@ -1041,20 +1091,26 @@ if any of the elements of a search vector are found:
 animals <- c("mouse", "rat", "dog", "cat")
 animals[animals == "cat" | animals == "rat"] # returns both rat and cat
 ```
-
-    > [1] "rat" "cat"
+~~~
+[1] "rat" "cat"
+~~~
+{: .output}
 
 ``` r
 animals %in% c("rat", "cat", "dog", "duck", "goat")
 ```
-
-    > [1] FALSE  TRUE  TRUE  TRUE
+~~~
+[1] FALSE  TRUE  TRUE  TRUE
+~~~
+{: .output}
 
 ``` r
 animals[animals %in% c("rat", "cat", "dog", "duck", "goat")]
 ```
-
-    > [1] "rat" "dog" "cat"
+~~~
+[1] "rat" "dog" "cat"
+~~~
+{: .output}
 
 > ## Stretch Challenge (Difficult - 10 mins)
 > 
@@ -1070,12 +1126,9 @@ animals[animals %in% c("rat", "cat", "dog", "duck", "goat")]
 > 
 > > ## Solution
 > > 
-> > creatures\[\!(creatures %in% mammals & creatures %in%
-> > sea\_creatures)\]
-> > 
-> > > \[1\] “rat” “sheep” “squirrel” “tiger” “jellyfish” “octopus”  
-> > > \[7\] “shark”
-> > 
+> > ```r
+> > creatures[!(creatures %in% mammals & creatures %in% sea_creatures)]
+> > ```
 > > 
 > {: .solution}
 > 
@@ -1140,52 +1193,17 @@ atomic vector.
 > 
 > > ## Solution
 > > 
-> > heights \<- c(63, 69, 60, 65, NA, 68, 61, 70, 61, 59, 64, 69, 63,
-> > 63, NA, 72, 65, 64, 70, 63, 65)
+> > ```r
+> > heights <- c(63, 69, 60, 65, NA, 68, 61, 70, 61, 59, 64, 69, 63, 63, NA, 72, 65, 64, 70, 63, 65)
 > > 
-> > heights
-> > 
-> > > \[1\] 63 69 60 65 NA 68 61 70 61 59 64 69 63 63 NA 72 65 64 70 63
-> > > 65
-> > 
-> > ### 1\.
-> > 
-> > heights\_no\_na \<- heights\[\!is.na(heights)\]
-> > 
-> > heights\_no\_na
-> > 
-> > > \[1\] 63 69 60 65 68 61 70 61 59 64 69 63 63 72 65 64 70 63 65
-> > 
-> > #### or
-> > 
-> > heights\_no\_na \<- na.omit(heights)
-> > 
-> > heights\_no\_na
-> > 
-> > > \[1\] 63 69 60 65 68 61 70 61 59 64 69 63 63 72 65 64 70 63 65
-> > > attr(,“na.action”) \[1\] 5 15 attr(,“class”) \[1\] “omit”
-> > 
-> > #### or
-> > 
-> > heights\_no\_na \<- heights\[complete.cases(heights)\]
-> > 
-> > heights\_no\_na
-> > 
-> > > \[1\] 63 69 60 65 68 61 70 61 59 64 69 63 63 72 65 64 70 63 65
-> > 
-> > ### 2\.
+> > heights_no_na <- heights[!is.na(heights)]
 > > 
 > > median(heights, na.rm = TRUE)
 > > 
-> > > \[1\] 64
+> > heights_above_67 <- heights_no_na[heights_no_na > 67]
 > > 
-> > ### 3\.
-> > 
-> > heights\_above\_67 \<- heights\_no\_na\[heights\_no\_na \> 67\]
-> > 
-> > length(heights\_above\_67)
-> > 
-> > > \[1\] 6
+> > length(heights_above_67)
+> > ```
 > > 
 > > 
 > {: .solution}
@@ -1237,7 +1255,7 @@ we have been using in the other lessons, and learn about data frames.
 >   - Describe what a data frame is.
 >   - Summarize the contents of a data frame.
 >   - Use indexing to subset specific portions of data frames.
->   - Format dates.
+>   - Convert, reorder, and reorder factors in data frames.
 {: .callout}
 
 -----
@@ -1476,7 +1494,9 @@ correct names of the columns.
 > 
 > > ## Solution
 > > 
-> > surveys\_200 \<- surveys\[200, \] 
+> > ```r
+> > surveys_200 <- surveys[200, ] 
+> > ```
 > > 
 > > 
 > {: .solution}
@@ -1493,8 +1513,9 @@ correct names of the columns.
 > 
 > > ## Solution
 > > 
-> > surveys\_last \<- surveys\[n\_rows, \]
-> > 
+> > ```r
+> > surveys_last <- surveys[n_rows, ]
+> > ```
 > > 
 > {: .solution}
 > 
@@ -1505,8 +1526,9 @@ correct names of the columns.
 > 
 > > ## Solution
 > > 
-> > surveys\_middle \<- surveys\[n\_rows / 2, \]
-> > 
+> > ```r
+> > surveys_middle <- surveys[n_rows / 2, ]
+> > ```
 > > 
 > {: .solution}
 > 
@@ -1517,8 +1539,9 @@ correct names of the columns.
 > 
 > > ## Solution
 > > 
-> > surveys\_head \<- surveys\[-(7:n\_rows), \]
-> > 
+> > ```r
+> > surveys_head <- surveys[-(7:n_rows), ]
+> > ```
 > > 
 > {: .solution}
 >  
@@ -1532,9 +1555,9 @@ correct names of the columns.
 > 
 > > ## Solution
 > > 
-> > survey\_dec\_2000 \<- surveys\[surveys$month == 12 & surveys$year
-> > == 2000, c(“record\_id”, “genus”, “species”)\]
-> > 
+> > ```r
+> > survey_dec_2000 <- surveys[surveys$month == 12 & surveys$year == 2000, c('record_id', 'genus', 'species')]
+> > ```
 > > 
 > {: .solution}
 > 
@@ -1543,152 +1566,227 @@ correct names of the columns.
 {: .challenge}
 
 
-## Formatting Dates
+## Factors
 
-One of the most common issues that new (and experienced\!) R users have
-is converting date and time information into a variable that is
-appropriate and usable during analyses. As a reminder from earlier in
-this lesson, the best practice for dealing with date data is to ensure
-that each component of your date is stored as a separate variable. Using
-`str()`, We can confirm that our data frame has a separate column for
-day, month, and year, and that each contains integer values.
+Factors are very useful and actually contribute to making R particularly
+well suited to working with data. So we are going to spend a little time
+introducing them.
+
+Factors represent categorical data. They are stored as integers
+associated with labels and they can be ordered or unordered. While
+factors look (and often behave) like character vectors, they are
+actually treated as integer vectors by R. So you need to be very careful
+when treating them as strings.
+
+Once created, factors can only contain a pre-defined set of values,
+known as *levels*. By default, R always sorts levels in alphabetical
+order. For instance, if you have a factor with 2 levels:
 
 ``` r
+sex <- factor(c("male", "female", "female", "male"))
+```
+
+R will assign `1` to the level `"female"` and `2` to the level `"male"`
+(because `f` comes before `m`, even though the first element in this
+vector is `"male"`). You can see this by using the function `levels()`
+and you can find the number of levels using `nlevels()`:
+
+``` r
+levels(sex)
+nlevels(sex)
+```
+
+Sometimes, the order of the factors does not matter, other times you
+might want to specify the order because it is meaningful (e.g., “low”,
+“medium”, “high”), it improves your visualization, or it is required
+by a particular type of analysis. Here, one way to reorder our levels in
+the `sex` vector would be:
+
+``` r
+sex # current order
+```
+~~~
+[1] male   female female male  
+Levels: female male
+~~~
+{: .output}
+
+``` r
+sex <- factor(sex, levels = c("male", "female"))
+sex # after re-ordering
+```
+~~~
+[1] male   female female male  
+Levels: male female
+~~~
+{: .output}
+
+In R’s memory, these factors are represented by integers (1, 2, 3), but
+are more informative than integers because factors are self describing:
+`"female"`, `"male"` is more descriptive than `1`, `2`. Which one is
+“male”? You wouldn’t be able to tell just from the integer data.
+Factors, on the other hand, have this information built in. It is
+particularly helpful when there are many levels (like the species names
+in our example dataset).
+
+### Converting factors
+
+If you need to convert a factor to a character vector, you use
+`as.character(x)`.
+
+``` r
+as.character(sex)
+```
+
+In some cases, you may have to convert factors where the levels appear
+as numbers (such as concentration levels or years) to a numeric vector.
+For instance, in one part of your analysis the years might need to be
+encoded as factors (e.g., comparing average weights across years) but in
+another part of your analysis they may need to be stored as numeric
+values (e.g., doing math operations on the years). This conversion from
+factor to numeric is a little trickier. The `as.numeric()` function
+returns the index values of the factor, not its levels, so it will
+result in an entirely new (and unwanted in this case) set of numbers.
+One method to avoid this is to convert factors to characters, and then
+to numbers.
+
+Another method is to use the `levels()` function. Compare:
+
+``` r
+year_fct <- factor(c(1990, 1983, 1977, 1998, 1990))
+as.numeric(year_fct)               # Wrong! And there is no warning...
+as.numeric(as.character(year_fct)) # Works...
+as.numeric(levels(year_fct))[year_fct]    # The recommended way.
+```
+
+Notice that in the `levels()` approach, three important steps occur:
+
+  - We obtain all the factor levels using `levels(year_fct)`
+  - We convert these levels to numeric values using
+    `as.numeric(levels(year_fct))`
+  - We then access these numeric values using the underlying integers of
+    the vector `year_fct` inside the square brackets
+
+### Renaming factors
+
+When your data is stored as a factor, you can use the `plot()` function
+to get a quick glance at the number of observations represented by each
+factor level. Let’s look at the number of males and females captured
+over the course of the experiment:
+
+``` r
+## bar plot of the number of females and males captured during the experiment:
+plot(as.factor(surveys$sex))
+```
+
+![](fig/unnamed-chunk-9-1.png)<!-- -->
+
+In addition to males and females, there are about 1700 individuals for
+which the sex information hasn’t been recorded. Additionally, for these
+individuals, there is no label to indicate that the information is
+missing or undetermined. Let’s rename this label to something more
+meaningful. Before doing that, we’re going to pull out the data on sex
+and work with that data, so we’re not modifying the working copy of the
+data frame:
+
+``` r
+sex <- factor(surveys$sex)
+head(sex)
+```
+~~~
+[1] M M        
+Levels:  F M
+~~~
+{: .output}
+
+``` r
+levels(sex)
+```
+~~~
+[1] ""  "F" "M"
+~~~
+{: .output}
+
+``` r
+levels(sex)[1] <- "undetermined"
+levels(sex)
+```
+~~~
+[1] "undetermined" "F"            "M"
+~~~
+{: .output}
+
+``` r
+head(sex)
+```
+~~~
+[1] M            M            undetermined undetermined undetermined
+[6] undetermined
+Levels: undetermined F M
+~~~
+{: .output}
+
+> ## Challenge
+> 
+>   - Rename “F” and “M” to “female” and “male” respectively.
+>   - Now that we have renamed the factor level to “undetermined”, can
+>     you recreate the barplot such that “undetermined” is last (after
+>     “male”)?
+> 
+> > ## Solution
+> > 
+> > ```r
+> > levels(sex)[2:3] <- c('female', 'male')
+> > 
+> > sex <- factor(sex, levels = c('female', 'male', 'undetermined'))
+> > 
+> > plot(sex)
+> > ```
+> > 
+> > ![](fig/unnamed-chunk-11-1.png)<!-- --> 
+> {: .solution}
+> 
+> 
+> 
+{: .challenge}
+
+
+### Using `stringsAsFactors=FALSE`
+
+In R versions previous to 4.0, when building or importing a data frame,
+the columns that contain characters (i.e. text) are coerced (=
+converted) into factors by default. However, since version 4.0 columns
+that contain characters (i.e. text) are NOT coerced (= converted) into
+factors.
+
+Depending on what you want to do with the data, you may want to keep
+these columns as `character` or you may want them to be `factor`.
+
+`read.csv()` and `read.table()` have an argument called
+`stringsAsFactors` which can be set to `FALSE` for character or `TRUE`
+for factor.
+
+In most cases, it is preferable to keep `stringsAsFactors = FALSE` when
+importing data and to convert as a factor only the columns that require
+this data type.
+
+``` r
+## Compare the difference between our data read as `factor` vs `character`.
+surveys <- read.csv("data_raw/portal_data_joined.csv", stringsAsFactors = TRUE)
 str(surveys)
+surveys <- read.csv("data_raw/portal_data_joined.csv", stringsAsFactors = FALSE)
+str(surveys)
+## Convert the column "plot_type" into a factor
+surveys$plot_type <- factor(surveys$plot_type)
 ```
 
-We are going to use the `ymd()` function from the package
-**`lubridate`** (which belongs to the **`tidyverse`**; learn more
-[here](https://www.tidyverse.org/)). When you load the **`tidyverse`**
-(`library("tidyverse")`), the core packages get loaded. **`lubridate`**
-however does not belong to the core tidyverse, so you have to load it
-explicitly with `library(lubridate)`
+The automatic conversion of data type is sometimes a blessing, sometimes
+an annoyance. Be aware that it exists, learn the rules, and double check
+that data you import in R are of the correct type within your data
+frame.
 
-Start by loading the required package:
 
-``` r
-library("lubridate")
-```
 
-`ymd()` takes a vector representing year, month, and day, and converts
-it to a `Date` vector. `Date` is a class of data recognized by R as
-being a date and can be manipulated as such. The argument that the
-function requires is a character vector formatted as “YYYY-MM-DD”.
-
-Let’s create a date object and inspect the structure:
-
-``` r
-my_date <- ymd("2015-01-01")
-str(my_date)
-```
-
-Now let’s paste the year, month, and day separately - we get the same
-result:
-
-``` r
-# sep indicates the character to use to separate each component
-my_date <- ymd(paste("2015", "1", "1", sep = "-"))
-str(my_date)
-```
-
-We can apply this operation to each row of the surveys dataset. We
-extract the vectors `surveys$year`, `surveys$month`, and `surveys$day`.
-Using `paste()` we can combine these vectors into a new vector for
-character dates.
-
-``` r
-dates_char_vec <- paste(surveys$year, surveys$month, surveys$day, sep = "-")
-```
-
-This character vector can be used as the argument for `ymd()`:
-
-``` r
-date_vec <- ymd(dates_char_vec)
-```
-
-Something went wrong lets use `summary` to inspect `date_vec`:
-
-``` r
-summary(date_vec)
-```
-
-    >         Min.      1st Qu.       Median         Mean      3rd Qu.         Max. 
-    > "1977-07-16" "1984-03-12" "1990-07-22" "1990-12-15" "1997-07-29" "2002-12-31" 
-    >         NA's 
-    >        "129"
-
-Some dates have missing values. Let’s investigate where they are coming
-from.
-
-``` r
-missing_dates_vec <- dates_char_vec[is.na(date_vec)]
-head(missing_dates_vec)
-```
-
-    > [1] "2000-9-31" "2000-4-31" "2000-4-31" "2000-4-31" "2000-4-31" "2000-9-31"
-
-or
-
-``` r
-missing_dates_tab <- surveys[is.na(date_vec), c("year", "month", "day")]
-head(missing_dates_tab)
-```
-
-    >      year month day
-    > 3144 2000     9  31
-    > 3817 2000     4  31
-    > 3818 2000     4  31
-    > 3819 2000     4  31
-    > 3820 2000     4  31
-    > 3856 2000     9  31
-
-Why did these dates fail to parse? If you had to use these data for your
-analyses, how would you deal with this situation?
-
-> ## Note
-> If the data is to be discarded we can use the `not` logical operator
-> `!` to make a filter for the bad dates.
-> 
->     date_vec_cleaned <- date_vec[!is.na(date_vec)]
-> 
-> However for now we will include the bad dates and can us this simple
-> filter later if needed.
-{: .callout}
-
-The resulting `Date` vector `date_vec` can be added to `surveys` as a
-new column called `date`:
-
-``` r
-surveys$date <- date_vec
-str(surveys) # notice the new column, with 'date' as the class
-```
-
-    > 'data.frame': 34786 obs. of  14 variables:
-    >  $ record_id      : int  1 72 224 266 349 363 435 506 588 661 ...
-    >  $ month          : int  7 8 9 10 11 11 12 1 2 3 ...
-    >  $ day            : int  16 19 13 16 12 12 10 8 18 11 ...
-    >  $ year           : int  1977 1977 1977 1977 1977 1977 1977 1978 1978 1978 ...
-    >  $ plot_id        : int  2 2 2 2 2 2 2 2 2 2 ...
-    >  $ species_id     : chr  "NL" "NL" "NL" "NL" ...
-    >  $ sex            : chr  "M" "M" "" "" ...
-    >  $ hindfoot_length: int  32 31 NA NA NA NA NA NA NA NA ...
-    >  $ weight         : int  NA NA NA NA NA NA NA NA 218 NA ...
-    >  $ genus          : chr  "Neotoma" "Neotoma" "Neotoma" "Neotoma" ...
-    >  $ species        : chr  "albigula" "albigula" "albigula" "albigula" ...
-    >  $ taxa           : chr  "Rodent" "Rodent" "Rodent" "Rodent" ...
-    >  $ plot_type      : chr  "Control" "Control" "Control" "Control" ...
-    >  $ date           : Date, format: "1977-07-16" "1977-08-19" ...
-
-> ## Note
->
-> For completeness sake it is worth noting that the above could be
-> achieved in one line. `surveys$date <- ymd(paste(surveys$year,
-> surveys$month, surveys$day, sep = "-"))` However, we would again see
-> the warning and could inspect it like so: `summary(surveys$date)`
-> `head(surveys[is.na(surveys$date), , c("year", "month", "day")])` This
-> way the r environment is kept cleaner however it is more difficult to
-> unpick where errors have occured.
-{: .callout}
 
 -----
 
@@ -1723,7 +1821,7 @@ str(surveys) # notice the new column, with 'date' as the class
 >   - ~~Describe what a data frame is.~~
 >   - ~~Summarize the contents of a data frame.~~
 >   - ~~Use indexing to subset specific portions of data frames.~~
->   - ~~Format dates.~~
+>   - ~~Convert, reorder, and reorder factors in data frames.~~
 {: .callout}
 
 -----
